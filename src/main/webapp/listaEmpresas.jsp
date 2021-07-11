@@ -11,12 +11,24 @@
 <title>Insert title here</title>
 </head>
 <body>
+	
+		<!-- Definindo condicional -->
+	<c:if test="${not empty empresa }">
+	Empresa ${ empresa } cadastrada com sucesso ! <br />
+	</c:if>
+
 	Lista de Empresas: <br />
 	<ul>
 		<!-- PERCORRENDO A LISTA DE EMPRESAS CADASTRADAS -->
 		<c:forEach  items="${empresas }" var="empresa">
-			<li>${empresa.name } <fmt:formatDate value="${empresa.dataAbertura }" pattern="dd/MM/yyyy"/></li> <!-- <-- FORMATANDO A SAÍDA DA DATA -->
+			<li>
+			Id: ${empresa.id } - ${empresa.name } - <fmt:formatDate value="${empresa.dataAbertura }" pattern="dd/MM/yyyy"/><!-- <-- FORMATANDO A SAÍDA DA DATA -->
+			<a href="/gerenciador/removeEmpresa?id=${empresa.id }">remove</a>
+			</li> 
+			<br />
+						
 		</c:forEach>
+		<a href="/gerenciador/formNovaEmpresa.jsp">Adicionar nova empresa</a>
 	</ul>
 
 </body>
