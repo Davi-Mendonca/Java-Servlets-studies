@@ -9,8 +9,7 @@ public class Empresa {
 	private Date dataAbertura;
 	
 	Empresa(){
-		// Definindo uma data apenas para testes
-		this.setDataAbertura(new Date());
+		
 	}
 	
 	public int getId() {
