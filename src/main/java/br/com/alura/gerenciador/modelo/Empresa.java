@@ -1,4 +1,4 @@
-package br.com.alura.gerenciador.servlet;
+package br.com.alura.gerenciador.modelo;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ public class Empresa {
 	private String name;
 	private Date dataAbertura;
 	
-	Empresa(){
+	public Empresa(){
 		
 	}
 	
