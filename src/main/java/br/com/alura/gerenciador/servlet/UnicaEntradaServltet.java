@@ -2,6 +2,7 @@ package br.com.alura.gerenciador.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,39 +15,47 @@ import br.com.alura.gerenciador.acao.MostraEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresa;
 import br.com.alura.gerenciador.acao.RemoveEmpresa;
 
-/**
- * Servlet implementation class UnicaEntradaServltet
- */
+// CONTROLADOR RESPONSAVEL POR DIRECIONAR AS REQUISIÇÕES
+
 @WebServlet("/entrada")
 public class UnicaEntradaServltet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String paramAcao = request.getParameter("acao");
 		
+		String acao = null;
 		if(paramAcao.equals("listaEmpresas")) {			
 			ListaEmpresas listaEmpresas = new ListaEmpresas();
-			listaEmpresas.listar(request, response);
-			
+			acao = listaEmpresas.listar(request, response);
+						
 		}else if(paramAcao.equals("removeEmpresa")) {
 			RemoveEmpresa removeEmpresa = new RemoveEmpresa();
-			removeEmpresa.remover(request, response);
+			acao = removeEmpresa.remover(request, response);
 			
 		}else if(paramAcao.equals("mostraEmpresa")) {
 			MostraEmpresa mostraEmpresa = new MostraEmpresa();
-			mostraEmpresa.mostrar(request, response);
+			acao = mostraEmpresa.mostrar(request, response);
 			
 		}else if(paramAcao.equals("novaEmpresa")) {
 			NovaEmpresa novaEmpresa = new NovaEmpresa();
-			novaEmpresa.cadastrar(request, response);
+			acao = novaEmpresa.cadastrar(request, response);
+			
 		}else if (paramAcao.equals("alteraEmpresa")) {
 			AlteraEmpresa alteraEmpresa = new AlteraEmpresa();
-			alteraEmpresa.alterar(request, response);
+			acao = alteraEmpresa.alterar(request, response);
 		}
+		
+		String[] dispatchOrRedirect = acao.split(":");
+		if (dispatchOrRedirect[0].equals("forward")) {
+			RequestDispatcher rd = request.getRequestDispatcher(dispatchOrRedirect[1]);
+			rd.forward(request, response);
+		} else {
+			response.sendRedirect(dispatchOrRedirect[1]);
+		}
+		
 	}
 
 }

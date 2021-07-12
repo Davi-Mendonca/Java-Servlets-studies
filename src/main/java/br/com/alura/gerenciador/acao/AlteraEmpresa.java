@@ -14,7 +14,7 @@ import br.com.alura.gerenciador.modelo.Empresa;
 
 public class AlteraEmpresa {
 
-	public void alterar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String alterar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Atualizando dados da empresa...");
 
 		String nomeParam = request.getParameter("name");
@@ -39,6 +39,6 @@ public class AlteraEmpresa {
 		empresa.setName(nomeParam);
 		empresa.setDataAbertura(dataAbertura);
 
-		response.sendRedirect("entrada?acao=listaEmpresas");
+		return "redirect:entrada?acao=listaEmpresas";
 	}
 }

@@ -12,7 +12,7 @@ import br.com.alura.gerenciador.modelo.Empresa;
 
 public class MostraEmpresa {
 
-	public void mostrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public String mostrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("mostrando empresas...");
 		
 		String paramId = request.getParameter("id");
@@ -23,9 +23,11 @@ public class MostraEmpresa {
 		Empresa empresa = banco.buscaEmpresaPorId(empresaId);
 		
 		request.setAttribute("empresa", empresa);
-		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
-		rd.forward(request, response);
+//		RequestDispatcher rd = request.getRequestDispatcher("/formAlteraEmpresa.jsp");
+//		rd.forward(request, response);
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		return "forward:/formAlteraEmpresa.jsp";
 	}
 }
