@@ -18,38 +18,35 @@ import javax.servlet.http.HttpServletResponse;
 public class AlteraEmpresaServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		System.out.println("Atualizando dados da empresa...");
 		
-		Empresa empresa = new Empresa();
+		String nomeParam = request.getParameter("name");
+		String paramDataAbertura = request.getParameter("data");
+		String paramId = request.getParameter("id");
 		
-		int paramId = Integer.parseInt(request.getParameter("id"));
+		System.out.println(paramId);
+		
+		int id = Integer.parseInt(paramId);
+		
+		Date dataAbertura = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+			dataAbertura = sdf.parse(paramDataAbertura);
+
+		} catch (ParseException e) {
+			throw new ServletException(e);
+		}
 		
 		Banco banco = new Banco();
+		Empresa empresa = banco.buscaEmpresaPorId(id);
+		empresa.setName(nomeParam);
+		empresa.setDataAbertura(dataAbertura);
 		
-		empresa = banco.buscaEmpresaPorId(paramId);
-		empresa.setId(request.getParameter("id"));
-		empresa.setName(request.getParameter("name"));
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-//		String stringDataAbertura = request.getParameter("data");
-//		int paramId = Integer.parseInt(request.getParameter("id"));
-//		empresa.setName(request.getParameter("name"));
-//		empresa.setId(paramId);
-//		
-//		Date dataAbertura = null;
-//		
-//		try {
-//			SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//			dataAbertura = sdf.parse(stringDataAbertura);
-//			
-//		} catch (ParseException e) {
-//			throw new ServletException(e);
-//		}
-		
-		
-		
-		
+		response.sendRedirect("listaEmpresas");
+
 	}
 
 }

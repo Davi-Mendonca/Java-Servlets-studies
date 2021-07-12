@@ -14,7 +14,7 @@
 	
 	Nome: <input type="text" name="name" /> <br />
 	Data Abertura: <input type="text" name="data" /> <br />
-	Id: <input type="text" name="id" /> <br />
+	<br />
 	
 	<input type="submit" />
 
