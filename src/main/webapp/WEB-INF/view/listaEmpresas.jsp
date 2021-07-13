@@ -29,7 +29,7 @@
 			<br />
 						
 		</c:forEach>
-		<a href="/gerenciador/formNovaEmpresa.jsp">Adicionar nova empresa</a>
+		<a href="/gerenciador/entrada?acao=novaEmpresaForm">Adicionar nova empresa</a>
 	</ul>
 
 </body>

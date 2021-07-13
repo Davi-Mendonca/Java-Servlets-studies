@@ -13,6 +13,7 @@ import br.com.alura.gerenciador.acao.AlteraEmpresa;
 import br.com.alura.gerenciador.acao.ListaEmpresas;
 import br.com.alura.gerenciador.acao.MostraEmpresa;
 import br.com.alura.gerenciador.acao.NovaEmpresa;
+import br.com.alura.gerenciador.acao.NovaEmpresaForm;
 import br.com.alura.gerenciador.acao.RemoveEmpresa;
 
 // CONTROLADOR RESPONSAVEL POR DIRECIONAR AS REQUISIÇÕES
@@ -46,11 +47,16 @@ public class UnicaEntradaServltet extends HttpServlet {
 		}else if (paramAcao.equals("alteraEmpresa")) {
 			AlteraEmpresa alteraEmpresa = new AlteraEmpresa();
 			acao = alteraEmpresa.alterar(request, response);
+		}else if (paramAcao.equals("novaEmpresaForm")) {
+			NovaEmpresaForm novaEmpresaForm = new NovaEmpresaForm();
+			acao = novaEmpresaForm.chamaFormulario(request, response);
 		}
+		
+		
 		
 		String[] dispatchOrRedirect = acao.split(":");
 		if (dispatchOrRedirect[0].equals("forward")) {
-			RequestDispatcher rd = request.getRequestDispatcher(dispatchOrRedirect[1]);
+			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/view/" + dispatchOrRedirect[1]);
 			rd.forward(request, response);
 		} else {
 			response.sendRedirect(dispatchOrRedirect[1]);
