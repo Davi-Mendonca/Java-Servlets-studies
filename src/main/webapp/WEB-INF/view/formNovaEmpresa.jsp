@@ -10,7 +10,7 @@
 </head>
 <body>
 	
-	<form action="${linkEntradaEmpresa }" method="post">
+	<form action="${linkEntradaEmpresa }" method="post"></form>
 	
 	Nome: <input type="text" name="name" /> <br />
 	Data Abertura: <input type="text" name="data" /> <br />
