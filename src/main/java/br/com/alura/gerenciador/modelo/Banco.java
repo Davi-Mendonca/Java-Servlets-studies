@@ -7,6 +7,7 @@ import java.util.List;
 public class Banco {
 
 	private static List<Empresa> lista = new ArrayList<>();
+	private static List<Usuario> listaUsuarios = new ArrayList<>();
 	private static int chaveSequencial = 1;
 	
 	public void adiciona(Empresa empresa) {
@@ -14,7 +15,7 @@ public class Banco {
 		Banco.lista.add(empresa);
 	}
 	
-	public void remove(int id) {
+	public void removeEmpresa(int id) {
 		
 		Iterator<Empresa> it = lista.iterator();
 		while (it.hasNext()) {
@@ -24,6 +25,23 @@ public class Banco {
 				it.remove();
 			}			
 		}
+	}
+	
+	public void cadastrarUsuario(String login, String senha) {
+		listaUsuarios.add(new Usuario(login, senha));
+	}
+	
+	public Usuario buscarUsuario(String login) {
+		Iterator<Usuario> listaUsr = listaUsuarios.iterator();
+		while(listaUsr.hasNext()) {
+			Usuario usr = listaUsr.next();
+			
+			if(usr.getLogin().equals(login)) {
+				return usr;
+			}
+		}
+		
+		return null;
 	}
 	
 	public Empresa buscaEmpresaPorId(int id) {
@@ -39,5 +57,8 @@ public class Banco {
 		return Banco.lista;
 	}
 
+	public static List<Usuario> getListaUsuarios() {
+		return listaUsuarios;
+	}
 	
 }
