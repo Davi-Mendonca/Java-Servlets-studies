@@ -19,6 +19,7 @@
 	<input type="hidden" name="id" value="${empresa.id }"/><br />
 	<input type="hidden" name="acao" value="AlteraEmpresa"/><br />
 	<input type="submit" />
+	<c:import url="logout-parcial.jsp"></c:import>
 	</form>
 
 </body>

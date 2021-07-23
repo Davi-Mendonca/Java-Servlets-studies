@@ -12,11 +12,12 @@
 
 	<form action="${linkEntradaEmpresa }" method="post">
 
-		Nome: <input type="text" name="name" /> <br /> 
-		Data Abertura: <input type="text" name="data" /> <br />
-		<input type="hidden" name="acao" value="NovaEmpresa" /><br />
-		<input type="submit" value="Cadastrar"/>
-		<c:import url="logout-parcial.jsp"></c:import>
+		Login: <input type="text" name="login" /> <br /> 
+		Senha: <input type="password" name="senha" /> <br /> 
+		<input type="hidden" name="acao" value="Login" /><br /> 
+		<input type="submit" value="Entrar" />
+		
+		<a href="/gerenciador/entrada?acao=CadastrarUsuarioForm">Cadastrar novo usuário</a>
 	</form>
 	
 </body>

@@ -16,6 +16,8 @@
 	<c:if test="${not empty empresa }">
 	Empresa ${ empresa } cadastrada com sucesso ! <br />
 	</c:if>
+	
+	Usuário logado: ${usuarioLogado.login }<hr/>
 
 	Lista de Empresas: <br />
 	<ul>
@@ -30,6 +32,7 @@
 						
 		</c:forEach>
 		<a href="/gerenciador/entrada?acao=NovaEmpresaForm">Adicionar nova empresa</a>
+		<c:import url="logout-parcial.jsp"></c:import>
 	</ul>
 
 </body>
