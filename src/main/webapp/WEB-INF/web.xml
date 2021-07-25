@@ -4,4 +4,35 @@
   <welcome-file-list>
     <welcome-file>bem-vindo.html</welcome-file>
   </welcome-file-list>
+  
+
+	<!-- Definindo a ordem dos filtros -->
+	
+   <filter>
+  	<filter-name>monitoramentoFilter</filter-name>
+  	<filter-class>br.com.alura.gerenciador.servlet.MonitoramentoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>monitoramentoFilter</filter-name>
+  	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+
+  <filter>
+  	<filter-name>autorizacaoFilter</filter-name>
+  	<filter-class>br.com.alura.gerenciador.servlet.AutorizacaoFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>autorizacaoFilter</filter-name>
+  	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+  
+    <filter>
+  	<filter-name>controladorFilter</filter-name>
+  	<filter-class>br.com.alura.gerenciador.servlet.ControladorFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>controladorFilter</filter-name>
+  	<url-pattern>/entrada</url-pattern>
+  </filter-mapping>
+
 </web-app>
